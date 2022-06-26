@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/page1','page1Controller@index')->middleware('checkApi');
+
+Route::get('/positions','positionsController@index');
+Route::post('/position','positionsController@store');
