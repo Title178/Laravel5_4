@@ -19,3 +19,6 @@ Route::get('/page1','page1Controller@index')->middleware('checkApi');
 
 Route::get('/positions','positionsController@index');
 Route::post('/position','positionsController@store');
+Route::get('/position/{id}','positionsController@edit');
+Route::put('/position/{id}','positionsController@update');
+Route::get('/position_destroy/{id}','positionsController@destroy')->name('position.destroy');

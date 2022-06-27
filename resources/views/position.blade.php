@@ -6,6 +6,15 @@ Position Page
 @endsection
 @section('content')
 
+<?php
+    function check_company($id='') {
+        if($id=='1') {
+            return 'บริษัทหลัก';
+        }else if($id=='2') {
+            return 'บริษัทย่อย';
+        }
+    }
+?>
 
 <i class="fa fa-book" aria-hidden="true"></i>
 
@@ -13,19 +22,12 @@ Position Page
     <i class="fa-add"></i>Add</b>
 </button>
 <br>
-@if($errors->all())
-<br><br><br>
-<div class="alert alert-danger">
-@foreach ($errors->all() as $error)
-    <li>{{$error}}</li>
-@endforeach
-</div>
-@endif
+
+
 <!-- The Modal -->
 <div class="modal fade " id="myModal">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-
         <form action="/position" method="post">
         {{ csrf_field() }}
             <!-- Modal Header -->
@@ -35,6 +37,15 @@ Position Page
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+            @if($errors->all())
+            <?php $msg_alert = array('func'=>'sw','title'=>'เงื่อนไขไม่ถูกต้อง'); ?>
+            <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+            </div>
+            @endif
+
                 <label>Position Name</label>
                 <input type="text" class="form-control" name="position_name"> <br>
         
@@ -57,11 +68,12 @@ Position Page
 <!-- End  Modal Add -->
 <br><br>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="dataTable">
     <thead>
         <tr style="text-align:center" class="table-warning">
             <th>No.</th>
             <th>Name Position</th>
+            <th>Company</th>
             <th>Date at</th>
             <th>Date edit</th>
             <th>Edit</th>
@@ -73,15 +85,23 @@ Position Page
         <tr>
             <td align="center">{{$key+1}}</td>
             <td>{{$value->position_name}}</td>
+            <td>{{check_company($value->company_id)}}</td>
             <td>{{date_only($value->created_at)}}</td>
             <td>{{date_only($value->updated_at)}}</td>
-            <td align="center"><i class=" fa-edit"></i></td>
-            <td align="center"><i class="fa-delete"></i></td>
+            <td align="center"><a href="{{url('/position/'.$value->id)}}"><i class=" fa-edit"></i></a></td>
+            <td align="center">
+                <a href="{{route('position.destroy',$value->id)}}" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?')">
+                    <i class="fa-delete"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
+<script>
+    $('#dataTable').DataTable();
+</script>
 
 @endsection
 

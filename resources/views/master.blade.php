@@ -14,13 +14,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     
+    <!-- Sweet Alert -->
+    <link href="{{asset('sweetalert/sweetalert.css')}}" rel="stylesheet" type="text/css">
+    <!-- Data table -->
+    <link href="{{asset('datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
     <style>
+        
     html,
     body {
         background-color: #B67B4D;
         /* font-family: 'Raleway', sans-serif; */
         /* height: 100vh; */
-        margin: 0;
     }
 
     .fa-add {
@@ -42,6 +46,14 @@
         content: url({{url('images/trash.png')}});
         width: 30px;
     } */
+    .fa-add,.fa-edit,.fa-delete {
+       cursor: pointer;
+    }
+
+    label {
+        font-weight:bold;
+    }
+
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -50,6 +62,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
+    <script src="{{asset('sweetalert/sweetalert.js')}}"></script>
+    <script src="{{asset('sweetalert/mysweetalert.js')}}"></script>
+
+        <!-- datable -->
+    <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+
+  
 </head>
 
 <body >
@@ -82,11 +103,29 @@
             </div>
         </div>
     </div>
-
-    <div style="width:100%;text-align:right;background-color:#343a40;color:white;padding:15px;position:absolute;bottom:0;margin-top:75px">
+   <br><br>
+    <div style="text-align:right;background-color:#343a40;color:white;padding:15px;position:absolute;bottom:0;width:100%;display:none">
     Test Lab laravel 5.4
     </div>
 </body>
+
+@isset($msg_alert)
+ @if(isset($msg_alert['func']) && isset($msg_alert['title'])) 
+<!-- เช็คการเรียกใช้ Sweet Alert จากการส่งตัวแปรธรรมดา มา-->
+ <script>
+  {{$msg_alert['func']}}('{{$msg_alert['title']}}')
+ </script>
+  @endif
+@endisset
+
+@if (\Session::has('msg_alert'))
+<!-- เช็คการเรียกใช้ Sweet Alert จากการส่งตัวแปร array ผ่าน ->with()-->
+  @if(isset(Session::get('msg_alert')['func']) && Session::get('msg_alert')['title']) 
+    <script>
+            {{ Session::get('msg_alert')['func'] }}('{{ Session::get('msg_alert')['title'] }}')
+    </script>
+  @endif
+@endif
 
 
 </html>
