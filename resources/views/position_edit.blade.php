@@ -20,7 +20,6 @@ $check2 = ($position->company_id=='2') ? 'selected' : '' ;
     {{ csrf_field() }}
 
     @if($errors->all())
-    
     <div class="alert alert-danger">
         @foreach ($errors->all() as $error)
         <li>{{$error}}</li>

@@ -65,7 +65,7 @@
     <script src="{{asset('sweetalert/sweetalert.js')}}"></script>
     <script src="{{asset('sweetalert/mysweetalert.js')}}"></script>
 
-        <!-- datable -->
+    <!-- datable -->
     <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
 
@@ -85,12 +85,14 @@
                 <a class="nav-link" href="/positions">Position</a>
             </li>
             <li class="nav-item">
+               
                 <a class="nav-link" href="#">Link 2</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link 3</a>
             </li>
         </ul>
+      
     </nav>
     <!-- End TopMenu -->
 
