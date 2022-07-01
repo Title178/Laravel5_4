@@ -11,4 +11,6 @@ class Position extends Model
         'position_name',
         'company_id'
     ];
+    
+
 }

@@ -16,4 +16,8 @@ class Member extends Model
         'username',
         'password'
     ];
+
+    public function position() {
+        return $this->hasOne(Position::class,'id','position_id');
+    }
 }

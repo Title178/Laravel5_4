@@ -85,8 +85,7 @@
                 <a class="nav-link" href="/positions">Position</a>
             </li>
             <li class="nav-item">
-               
-                <a class="nav-link" href="#">Link 2</a>
+                 <a class="nav-link" href="{{route('members.show')}}">Member</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Link 3</a>

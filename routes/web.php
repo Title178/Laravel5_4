@@ -23,6 +23,7 @@ Route::get('/position/{id}','positionsController@edit');
 Route::put('/position/{id}','positionsController@update');
 Route::get('/position_destroy/{id}','positionsController@destroy')->name('position.destroy');
 
+Route::get('/members','memberController@index')->name('members.show');
 Route::get('/member','memberController@create')->name('member.register');
 Route::post('/member','memberController@store')->name('member.register');
 

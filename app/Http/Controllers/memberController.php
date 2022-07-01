@@ -18,8 +18,14 @@ class memberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   // query buider join table
+        //  $members = Member::join('positions','positions.id','=','members.position_id')->get(['members.*','positions.position_name']);
+
+        // Eloquent Model
+        $members = Member::orderBy('id','desc')->get();
+      
+        return view('member/index',compact('members'));
+
     }
 
     /**
